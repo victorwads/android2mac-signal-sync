@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Android 2 Mac Sinal Sync</title>
+  <desc id="desc">Celular e barras de sinal em branco sobre um quadrado laranja arredondado.</desc>
+  <rect id="background" x="32" y="32" width="960" height="960" rx="216" fill="#F97316"/>
+  <g id="symbol" fill="#FFFFFF">
+    <path d="M300 230 H440 Q484 230 484 274 V750 Q484 794 440 794 H300 Q256 794 256 750 V274 Q256 230 300 230 Z M308 286 V722 H432 V286 Z M350 748 V768 H390 V748 Z" fill-rule="evenodd"/>
+    <path d="M540 638 H600 V730 H540 Z M636 534 H696 V730 H636 Z M732 414 H792 V730 H732 Z"/>
+    <path d="M540 302 H716 V270 L780 326 L716 382 V350 H540 Z"/>
+  </g>
+</svg>

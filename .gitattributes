@@ -1,0 +1,2 @@
+# Gradle Windows wrapper uses standard CRLF line endings.
+*.bat text eol=crlf whitespace=cr-at-eol
