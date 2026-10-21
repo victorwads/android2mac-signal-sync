@@ -1,0 +1,11 @@
+# Gerados pelo XcodeGen
+*.xcodeproj/
+Generated/
+
+# Compilação e preferências locais
+.build/
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+.DS_Store
