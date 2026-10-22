@@ -1,3 +1,8 @@
+# Private upload signing material (never commit)
+/signing-private/
+*.jks
+*.keystore
+
 *.iml
 .gradle
 .kotlin/

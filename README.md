@@ -102,7 +102,7 @@ Verified: Android HTTP approval, unauthorized access, battery response and revoc
 
 - android: native app and Gradle wrapper.
 - mac: native SwiftUI app and [XcodeGen configuration](<mac/project.yml>).
-- assets: [SVG logo](<assets/logo.svg>) and [icon generator](<assets/generate-icons.py>).
+- assets: [canonical SVG logo](<assets/logo.svg>) and [platform icon generation guide](<assets/README.md>).
 
 Bundle / application ID: `dev.wads.phone2mac.signalsync`.
 

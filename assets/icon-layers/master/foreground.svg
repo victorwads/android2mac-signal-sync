@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 256 256" role="img">
+  <title>Sinal Sync — master/foreground</title>
+  <rect x="40" y="112" width="44" height="82" rx="10" fill="#782F9A" stroke="#FFF8FD" stroke-width="9.5" />
+  <path d="M57 182 H67" fill="none" stroke="#FFF8FD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="108" y="128" width="105" height="66" rx="8" fill="#782F9A" stroke="#FFF8FD" stroke-width="9.5" />
+  <path d="M100 206 H221" fill="none" stroke="#FFF8FD" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path id="curva-e-primeira-barra" d="M62 95 C66 80 94 85 94 67.36 V63.06" fill="none" stroke="#FF693D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <g transform="translate(94 45) scale(0.86)">
+    <path d="M10 26 V14 M20 26 V6" fill="none" stroke="#FF693D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M48 4 H33 V15 H42 Q49 15 49 21 Q49 28 42 28 H33 M76 8 Q72 4 67 4 Q56 4 56 16 Q56 28 67 28 Q73 28 76 24 V18 H68" fill="none" stroke="#FFF8FD" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <path d="M171 65 C188 70 196 87 197 110 M187 101 L198 112 L207 100" fill="none" stroke="#FF693D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

@@ -1,0 +1,97 @@
+{
+  "groups": [
+    {
+      "name": "01 WADS signature",
+      "layers": [
+        {
+          "image-name": "01-wads-signature.svg",
+          "name": "WADS signature",
+          "glass": false,
+          "position": {
+            "scale": 1,
+            "translation-in-points": [
+              0,
+              0
+            ]
+          },
+          "opacity": 0.09
+        }
+      ],
+      "specular": false,
+      "shadow": {
+        "kind": "none",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    },
+    {
+      "name": "02 Devices",
+      "layers": [
+        {
+          "image-name": "02-devices.svg",
+          "name": "Phone and Mac",
+          "glass": true,
+          "position": {
+            "scale": 1,
+            "translation-in-points": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "specular": true,
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.25
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.12
+      },
+      "lighting": "combined"
+    },
+    {
+      "name": "03 Transmission",
+      "layers": [
+        {
+          "image-name": "03-transmission.svg",
+          "name": "Signal 5G and arrow",
+          "glass": true,
+          "position": {
+            "scale": 1,
+            "translation-in-points": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "specular": true,
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.2
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.12
+      },
+      "lighting": "combined"
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS"
+    ]
+  },
+  "fill-specializations": [
+    {
+      "value": {
+        "solid": "srgb:0.470588,0.184314,0.603922,1.00000"
+      }
+    }
+  ]
+}

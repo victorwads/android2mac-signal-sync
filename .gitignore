@@ -1,0 +1,10 @@
+# Local design proposals and archived drafts (final assets remain versionable)
+/assets/proposals/
+
+# Host metadata and Python caches
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Existing local distribution configuration; keep the file on disk
+/mac/ExportOptions-TestFlight.plist

@@ -1,25 +1,61 @@
 # Identidade visual
 
-A fonte é [logo.svg](<logo.svg>): base laranja **#F97316**, celular, seta de transmissão e barras de sinal em branco.
+A fonte canônica aprovada é [logo.svg](<logo.svg>) (Arco): base roxa **#782F9A**, dispositivos/5G em branco quente **#FFF8FD** e transmissão em coral **#FF693D**. Os traços estão engrossados e a curva integra a primeira barra de sinal. A assinatura WADS aparece a 9%, sem quadrado interno. [logo.svg](<logo.svg>) é a cópia canônica; não retomar o desenho laranja antigo.
 
-## Gerar os ícones
+## Fontes e camadas
 
-Requer Python 3 e ImageMagick 7 (`brew install imagemagick`). Na raiz:
+Consulte as [instruções das camadas](<icon-layers/README.md>). As fontes têm tamanho nominal 1024 × 1024 e viewBox 0 0 256 256; o sistema aplica a máscara externa no adaptive Android e no ícone nativo macOS.
+
+O [exportador de camadas](<export-icon-layers.py>) recria as fontes derivadas de [logo.svg](<logo.svg>). Ele sobrescreve os SVGs compartilhados: coordene antes de executar, depois regenere e valide cada plataforma separadamente. Não altera os recursos instaláveis dos apps.
 
 ```sh
-python3 assets/generate-icons.py
+# Somente após coordenar uma mudança de fonte:
+python3 assets/export-icon-layers.py
+python3 assets/export-icon-layers.py --check
 ```
 
-No macOS, se o Python instalado estiver com problema, use `/usr/bin/python3 assets/generate-icons.py`.
+## Gerar e verificar Android
 
-O script gera:
+Use o [gerador exclusivo Android](<generate-android-icons.py>). Requer Python 3, ImageMagick 7 e Swift/AppKit no macOS, ou `rsvg-convert` nos outros hosts. O renderer interno MSVG do ImageMagick omite strokes desta arte; por isso o script usa um renderer SVG completo e deixa somente o resize PNG para ImageMagick. No host atual, prefira `/usr/bin/python3` se o Python do PATH estiver com framework inválido.
 
-- Preview PNG de 1024 × 1024 nesta pasta.
-- Catálogo AppIcon do macOS com tamanhos de 16 a 1024 pixels, em `mac/Sources/Assets.xcassets`.
-- PNGs Android para mdpi, hdpi, xhdpi, xxhdpi e xxxhdpi.
-- Ícone adaptativo Android 8+ com fundo laranja e foreground vetorial.
-- Variante monocromática para ícones temáticos Android 13+.
+```sh
+python3 assets/generate-android-icons.py
+python3 assets/generate-android-icons.py --check
+cd android
+./gradlew :app:assembleDebug :app:testDebugUnitTest
+```
 
-O SVG usa um retângulo `background` e um grupo `symbol`. O gerador converte os paths desse grupo para VectorDrawable; mantenha paths com coordenadas absolutas no viewBox 1024 × 1024, preenchimento branco e sem transforms ao editar. Os ícones adaptativos preservam espaço para recorte pelo launcher.
+O script escreve apenas os dez recursos `signal_launcher` em [res](<../android/app/src/main/res>): cinco PNGs legados (48, 72, 96, 144 e 192 px), três VectorDrawables e dois seletores adaptive (API 26/33). O fundo contém a assinatura; o foreground mantém os interiores roxos opacos. A variante monocromática usa traços brancos e interiores transparentes, sem assinatura de fundo. `--check` regenera temporariamente e compara todos os recursos sem alterar arquivos versionados. O manifesto já referencia `signal_launcher` para ícone normal e redondo.
 
-Após gerar, execute `xcodegen generate` dentro de `mac` para incluir o catálogo no projeto. Os ícones gerados são recursos dos apps e podem ser versionados; não são arquivos gerados pelo XcodeGen. A barra de menus usa uma imagem template monocromática desenhada pelo app, com apelidos, sinal, rede, bateria e carregamento; ela é independente da logo do aplicativo.
+As camadas adaptive têm 108 × 108 dp, com arte a 60% da fonte; não aplique uma segunda redução. Verifique também máscara/viewport do launcher, ícone temático em Android 13+ e recursos presentes no APK final. Build/unit tests não substituem essa inspeção visual.
+
+## Gerar e verificar macOS
+
+Use o [gerador exclusivo macOS](<generate-macos-icon.py>). Este repositório contém um app macOS, não um app iOS.
+
+```sh
+python3 assets/generate-macos-icon.py
+python3 assets/generate-macos-icon.py --check
+cd mac
+xcodegen generate
+xcodebuild -project PhoneSignalSync.xcodeproj -scheme PhoneSignalSync -configuration Debug build
+# Depois, validar o catálogo nativo compilado:
+python3 ../assets/generate-macos-icon.py --validate-compiled path/to/Assets.car
+```
+
+O gerador escreve somente o pacote [SinalSync.icon](<../mac/Sources/SinalSync.icon>), com fundo nativo e três camadas semânticas: assinatura, dispositivos e transmissão. O [projeto](<../mac/project.yml>) usa `ASSETCATALOG_COMPILER_APPICON_NAME: SinalSync`. Consulte as [instruções Apple das camadas](<icon-layers/README.md>) para efeitos, variantes e revisão no Icon Composer. A geração/verificação do pacote não prova, por si só, que o app foi compilado ou que o resultado Liquid Glass foi revisado. O build requer Xcode e permissões locais adequadas; não aceite contratos/licenças automaticamente.
+
+A barra de menus usa imagem template desenhada pelo app e é independente da logo do aplicativo.
+
+## Material final de loja
+
+O [ícone Google Play](<store/google-play/icon-512.png>) é PNG32 512 × 512, sRGB e opaco, derivado da [composição master quadrada](<icon-layers/master/composite.svg>). O [gerador Play](<store/google-play/generate.py>) produz somente esse ícone, nunca feature graphics ou outros rascunhos.
+
+```sh
+python3 assets/store/google-play/generate.py
+python3 assets/store/google-play/generate.py --check
+```
+
+A [prévia final](<logo-preview.png>) permanece como referência documental. As fontes, camadas e geradores finais são autossuficientes; históricos de design, ZIPs/prévias intermediárias, geradores antigos e diagnósticos locais não fazem parte da cadeia de geração final.
+
+No macOS, o ícone da App Store vem do pacote nativo compilado no app, não de uma referência PNG plana. Nenhum gerador publica ou atualiza lojas. Uploads, mudanças de ficha, contratos e releases exigem autorização humana específica.
